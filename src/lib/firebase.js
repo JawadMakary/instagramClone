@@ -2,7 +2,7 @@ import Firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 // import the seed file :
-import {seedDatabase} from '../seed'
+// import {seedDatabase} from '../seed'
 const config={
     apiKey: "AIzaSyDbpJGvgLr-8OC-XRXnZuaSLZNen5AyOgc",
   authDomain: "instagramclone-8ff61.firebaseapp.com",
