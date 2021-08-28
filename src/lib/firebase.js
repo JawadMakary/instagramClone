@@ -14,6 +14,7 @@ const config={
 
 
 const firebase = Firebase.initializeApp(config);
+// fieldValue->Sentinel values that can be used when writing document fields with set() or update().
 const { FieldValue } = Firebase.firestore;
 
 // call the function once here
