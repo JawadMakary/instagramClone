@@ -42,21 +42,21 @@ const Signup = () => {
             <form onSubmit={handleSignup} method='POST'>
             <input type="text" aria-label='Enter your username' placeholder='Username' className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2 '
                     onChange={({target})=>setUsername(target.value)}
-                    value={username || ''}
+                    value={username}
                     />
 
 <input type="text" aria-label='Enter your full name' placeholder='Full name' className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2 '
                     onChange={({target})=>setFullName(target.value)}
-                    value={fullName || ''}
+                    value={fullName}
                     />
                     <input type="email" aria-label='Enter your email address' placeholder='Email address' className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2 '
                     onChange={({target})=>setEmailAddress(target.value)
                   }
-                  value={emailAddress || ''}
+                  value={emailAddress}
                     />
                       <input type="password" aria-label='Enter your password' placeholder='Password' className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2 '
                     onChange={({target})=>setPassword(target.value)}
-                    value={password || ''}
+                    value={password}
                     />
                     <button disabled={isInvalid}
                     type='submit'
@@ -73,7 +73,7 @@ const Signup = () => {
            <div className='flex justify-center items-center flex-col w-full bg-white p-4 border border-gray-primary'>
                <p className='text-sm '>
                        Have an account? {``}
-                        <Link to='/login' className='font-bold text-blue-medium cursor-pointer'>
+                        <Link to={ROUTES.LOGIN} className='font-bold text-blue-medium cursor-pointer'>
                             Login
                         </Link>
                </p>

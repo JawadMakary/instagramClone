@@ -41,9 +41,11 @@ const Login = () => {
             <form onSubmit={handleLogin} method='POST'>
                     <input type="email" aria-label='Enter your email address' placeholder='Email address' className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2 '
                     onChange={({target})=>setEmailAddress(target.value)}
+                    value={emailAddress}
                     />
                       <input type="password" aria-label='Enter your password' placeholder='Password' className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2 '
                     onChange={({target})=>setPassword(target.value)}
+                    value={password}
                     />
                     <button disabled={isInvalid}
                     type='submit'
@@ -60,7 +62,7 @@ const Login = () => {
            <div className='flex justify-center items-center flex-col w-full bg-white p-4 border border-gray-primary'>
                <p className='text-sm '>
                         Don't have an account? {``}
-                        <Link to='/sign-up' className='font-bold text-blue-medium cursor-pointer'>
+                        <Link to={ROUTES.SIGN_UP} className='font-bold text-blue-medium cursor-pointer'>
                             Sign up
                         </Link>
                </p>
