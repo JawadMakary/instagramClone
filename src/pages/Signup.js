@@ -3,26 +3,27 @@ import { Link,useHistory } from 'react-router-dom'
 import FirebaseContext from '../context/firebase'
 import * as ROUTES from '../constants/routes.js'
 // base,primary etc... => added in the config of tailwindcss
-const Login = () => {
+const Signup = () => {
     const history=useHistory()
     const {firebase}=useContext(FirebaseContext)
     const[emailAddress,setEmailAddress]=useState('')
     const[password,setPassword]=useState('')
     const[error,setError]=useState('')
-    const isInvalid= password ==='' || emailAddress ===''
-    const handleLogin=async (event)=>{
+    const[username,setUsername]=useState('')
+    const[fullName,setFullName]=useState('')
+    const isInvalid= password ==='' || emailAddress ==='' || username === '' || fullName ===''
+
+
+    const handleSignup=async (event)=>{
         event.preventDefault()
         try {
-            await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
-            history.push(ROUTES.DASHBOARD);
+           
           } catch (error) {
-            setEmailAddress('');
-            setPassword('');
-            setError(error.message);
+           
           }
         };
     // useEffect(()=>{
-    //     document.title='Login-Instagram'
+    //     document.title='Signup-Instagram'
     // },[])
 
     return (
@@ -38,12 +39,24 @@ const Login = () => {
   
             {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
   
-            <form onSubmit={handleLogin} method='POST'>
+            <form onSubmit={handleSignup} method='POST'>
+            <input type="text" aria-label='Enter your username' placeholder='Username' className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2 '
+                    onChange={({target})=>setUsername(target.value)}
+                    value={username || ''}
+                    />
+
+<input type="text" aria-label='Enter your full name' placeholder='Full name' className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2 '
+                    onChange={({target})=>setFullName(target.value)}
+                    value={fullName || ''}
+                    />
                     <input type="email" aria-label='Enter your email address' placeholder='Email address' className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2 '
-                    onChange={({target})=>setEmailAddress(target.value)}
+                    onChange={({target})=>setEmailAddress(target.value)
+                  }
+                  value={emailAddress || ''}
                     />
                       <input type="password" aria-label='Enter your password' placeholder='Password' className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2 '
                     onChange={({target})=>setPassword(target.value)}
+                    value={password || ''}
                     />
                     <button disabled={isInvalid}
                     type='submit'
@@ -53,15 +66,15 @@ const Login = () => {
                     ${isInvalid && 'opacity-50'}
                     
                 `}>
-                        Log In
+                        Sign up
                     </button>
                 </form>
            </div>
            <div className='flex justify-center items-center flex-col w-full bg-white p-4 border border-gray-primary'>
                <p className='text-sm '>
-                        Don't have an account? {``}
-                        <Link to='/sign-up' className='font-bold text-blue-medium cursor-pointer'>
-                            Sign up
+                       Have an account? {``}
+                        <Link to='/login' className='font-bold text-blue-medium cursor-pointer'>
+                            Login
                         </Link>
                </p>
             </div>
@@ -70,4 +83,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Signup
