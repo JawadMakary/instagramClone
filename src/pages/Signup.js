@@ -2,6 +2,7 @@ import React, { useContext,useState,useEffect } from 'react'
 import { Link,useHistory } from 'react-router-dom'
 import FirebaseContext from '../context/firebase'
 import * as ROUTES from '../constants/routes.js'
+import { doesUsernameExist } from '../services/firebase'
 // base,primary etc... => added in the config of tailwindcss
 const Signup = () => {
     const history=useHistory()
@@ -16,11 +17,40 @@ const Signup = () => {
 
     const handleSignup=async (event)=>{
         event.preventDefault()
-        try {
-           
+        const usernameExists= await doesUsernameExist(username)
+        if(usernameExists.length ===0){
+          try {
+            // auth
+           const createdUserResult=await firebase
+           .auth()
+           .createUserWithEmailAndPassword(emailAddress,password);
+           await createdUserResult.user.updateProfile({
+            displayName:username 
+          })
+          //  firestore
+          await firebase.firestore().collection('users').add({
+            userId:createdUserResult.user.uid,
+            username:username.toLowerCase(),
+            fullName:fullName,
+            emailAddress:emailAddress.toLowerCase(),
+            following:[],
+            dateCreated:Date.now()
+          })
+          history.push(ROUTES.DASHBOARD)
+          
+
           } catch (error) {
-           
+           setFullName('')
+           setEmailAddress('')
+           setPassword('')
+           setError(error.message)
           }
+
+        }
+        else{
+          setError('that username is already taken, please try another one')
+        }
+      
         };
     // useEffect(()=>{
     //     document.title='Signup-Instagram'
