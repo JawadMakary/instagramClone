@@ -29,3 +29,6 @@ const User = ({username,fullName}) => {
 }
 
 export default memo(User)
+User.whyDidYouRender = true
+
+ 
