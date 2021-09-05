@@ -1,0 +1,31 @@
+import React,{memo} from 'react'
+import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
+import Skeleton from 'react-loading-skeleton'
+const User = ({username,fullName}) => {
+    // propTypes:Runtime type checking for React props and similar objects.
+    // skeleton-> for loading
+    User.propTypes={
+        username:PropTypes.string.isRequired,
+        fullName:PropTypes.string.isRequired
+    }
+    return (
+       !username || !fullName ?(
+           <Skeleton count={1} height={61} />
+       ):(
+           <Link to={`/p/${username}`} className='grid grid-cols-4 gap-4 mb-6 items-center'>
+               <div className="flex items-center justify-between col-span-1">
+                   <img className='rounded-full w-16 flex mr-3' src={`/images/avatars/karl.jpg`} alt="logo" />
+             
+               </div>
+               <div className="col-span-3">
+               <p>{username}</p>
+                   <p className='text-sm'>{fullName}</p>
+               </div>
+               
+           </Link>
+       )
+    )
+}
+
+export default memo(User)

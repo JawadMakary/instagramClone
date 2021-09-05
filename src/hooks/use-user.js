@@ -7,7 +7,7 @@ export default function useUser(){
     useEffect(()=>{
         async function getUserObjectByUserId(){
             // fct that get user data based on id
-            const response = await getUserByUserId(user.uid)
+            const [response] = await getUserByUserId(user.uid)
             setActiveUser(response)
         }
         if(user?.uid){
