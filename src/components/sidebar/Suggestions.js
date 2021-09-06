@@ -19,7 +19,7 @@ const Suggestions = ({userId,following,loggedInUserDocId}) => {
          if(userId){
             suggestedProfiles()
          }
-         console.log('profiles-->',profiles)
+         
        
        
     },[userId])

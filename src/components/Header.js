@@ -37,6 +37,7 @@ const Header = () => {
                     />
                   </svg>
                         </Link>
+                        <Link to={ROUTES.LOGIN}>
                         <button type='button'
                         title='Sign Out'
                         onClick={()=>firebase.auth().signOut()}
@@ -46,6 +47,7 @@ const Header = () => {
                             }
                         }}
                         >
+                        
                                  <svg
                     className="w-8 mr-6 text-black-light cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
@@ -61,6 +63,7 @@ const Header = () => {
                     />
                   </svg>
                         </button>
+                        </Link>
                         <div className="flex items-center cursor-pointer">
                         <Link to={`/p/${user.displayName}`}>
                         <img className='rounded-full h-8 w-8 flex' src={`/images/avatars/karl.jpg`} alt={`${user.displayName} `} />
