@@ -1,18 +1,26 @@
 import React,{useState,useEffect} from 'react'
 import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'
-const Suggestions = () => {
+import {getSuggestedProfiles} from '../../services/firebase'
+const Suggestions = ({userId,following}) => {
     const[profiles,setProfiles]=useState(null)
     Suggestions.propTypes={
-        userId:PropTypes.string
+        userId:PropTypes.string,
+        following:PropTypes.array
     }
     // get suggested profiles
-
-
-
     useEffect(()=>{
-
-    },[])
+        async function suggestedProfiles(){
+            const response = await getSuggestedProfiles(userId,following)
+            setProfiles(response)  
+         }
+         if(userId){
+            suggestedProfiles()
+         }
+         console.log('profiles-->',profiles)
+       
+       
+    },[userId])
     return (
         !profiles ?(
             <Skeleton count={1} height={150} className='mt-5' />
