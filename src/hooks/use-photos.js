@@ -13,10 +13,11 @@ export default function usePhotos(){
                 followedUserPhotos= await getPhotos(userId,following)
             
             }
-        
+            // newest photos on the top of the feed
+            followedUserPhotos.sort((a,b)=>b.dateCreated-a.dateCreated)
+            setPhotos(followedUserPhotos)
         }
-        // console.log(userId)
         getTimelinePhotos()
-    },[])
+    },[userId])
     return {photos}
 }
