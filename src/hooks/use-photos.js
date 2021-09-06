@@ -1,14 +1,10 @@
 import { useState,useEffect,useContext } from "react";
-import UserContext from '../context/firebase'
+import userContext from '../context/user'
 import { getUserByUserId,getPhotos } from "../services/firebase";
 
 export default function usePhotos(){
     const[photos,setPhotos]=useState(null)
-    const {
-        user:{
-            uid:userId=''
-        }
-    }=useContext(UserContext)
+    const { user:{uid:userId=''}}=useContext(userContext)
     useEffect(()=>{
         async function getTimelinePhotos(){
             const {following}= await getUserByUserId(userId)
