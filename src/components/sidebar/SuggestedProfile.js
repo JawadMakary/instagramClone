@@ -7,9 +7,9 @@ const SuggestedProfile = ({spDocId,username,profileId,userId,loggedInUserDocId})
     async function handleFollowUser(){
         setFollowed(true)
         // update following array of logged in user
-        await updateLoggedInUserFollowing(loggedInUserDocId,profileId);
+        await updateLoggedInUserFollowing(loggedInUserDocId,profileId,false);
         // update followers array of the user who has been followed
-       await updateFollowedUserFollowers(spDocId,userId)
+       await updateFollowedUserFollowers(spDocId,userId,false)
 
     }
     SuggestedProfile.propTypes={
