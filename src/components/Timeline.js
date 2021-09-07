@@ -1,8 +1,10 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 import usePhotos from '../hooks/use-photos'
+import Post from './post'
 const Timeline = () => {
     const {photos}=usePhotos()
+    console.log('photos are --->',photos)
     return (
         <div className='container col-span-2'>
             {!photos ? (
@@ -13,12 +15,13 @@ const Timeline = () => {
                 </>
             )
             : photos?.length > 0 ? (
-                photos.map((content)=><p key={content.docId}>{content.imageSrc}</p>)
+                photos.map((content)=><Post key={content.docId} content={content} />)
             
             ):(
                 <p className='text-center text-2xl'>Follow People to see photos</p>
             )
             }
+           
         </div>
     )
 }
